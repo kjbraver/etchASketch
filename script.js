@@ -6,6 +6,19 @@ $(document).ready(function() {
 
 	//generate 16 column divs in each row to fill out gameBoard
 	for(var j = 0; j < 16; j++) {
-		$('.row').append($('<div class="cell default"></div>'));
+		$('.row').append($('<div class="cell"></div>'));
 	}
+
+	leaveColorTrail('red');
 });
+
+//leaves color trail of color "newColor"
+//newColor: string corresponding to css class name included in stylesheet
+function leaveColorTrail(newColor) {
+	//change color of cells when mouse passes through
+	$('.cell').on("mouseenter", function(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		$(this).addClass(newColor);	
+	});
+}
