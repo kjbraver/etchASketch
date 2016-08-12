@@ -35,7 +35,7 @@ $(document).ready(function() {
 //newColor: string corresponding to css class name included in stylesheet
 function leaveColorTrail(newColor) {
 	//change color of cells when mouse passes through
-	$('.cell').on("mouseenter", function(event) {
+	$("#gameBoard").on("mouseenter", ".cell", function(event) {
 		event.stopPropagation();
 		event.preventDefault();
 		$(this).addClass(newColor);	
