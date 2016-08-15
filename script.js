@@ -1,11 +1,12 @@
 $(document).ready(function() {
+	//current color setting 
+	var currentColor = "red";
 
+	//generate initial game board
 	generateBoard(16);
 
 	//resize game board when button is clicked
-	$('#resize').on('click', function(event) {
-		event.stopPropagation();
-		event.preventDefault();
+	$('#menuContents').on('click', '#resize', function() {
 		var boardSize;
 
 		do {
@@ -24,23 +25,27 @@ $(document).ready(function() {
 		$('.cell').width(cellLength - cellBorder);
 		$('.cell').height(cellLength - cellBorder);
 		$('.row').height(cellLength);
-
 	}); 
 
-	leaveColorTrail('red');
-
-});
-
-//leaves color trail of color "newColor"
-//newColor: string corresponding to css class name included in stylesheet
-function leaveColorTrail(newColor) {
-	//change color of cells when mouse passes through
-	$("#gameBoard").on("mouseenter", ".cell", function(event) {
-		event.stopPropagation();
-		event.preventDefault();
-		$(this).addClass(newColor);	
+	//manage color change when one of the color trail buttons are clicked
+	$('#menuContents').on('click', '.colorTrail', function() {
+		//remove prior color trail
+		$('.cell').removeClass(currentColor);
+		//determine new color setting
+		currentColor = $(this).data("color");
+		//bind new color class to cells
 	});
-}
+
+	//change cell color as mouse passes through
+	$("#gameBoard").on("mouseenter", ".cell", function() {
+			$(this).addClass(currentColor);	
+		});
+
+	//erase board when clear button is clicked
+	$('#menuContents').on('click', '#clear', function() {
+		$('.cell').removeClass(currentColor);
+	});
+});
 
 //generates game board with boardSize x boardSize dimensions
 //boardSize: int
@@ -58,7 +63,7 @@ function generateBoard(boardSize) {
 		//generate 'boardSize' column divs in each row to fill out gameBoard
 		var $row = $('.row');
 		for(var j = 0; j < boardSize; j++) {
-			$row.append($('<div class="cell"></div>'));
+			$row.append($('<div class="cell defaultColor"></div>'));
 		}
 	}
 }

@@ -1,3 +1,7 @@
+body {
+	background-color: #97b164;
+}
+
 div {
 	display: block;
 	padding:0px;
@@ -5,10 +9,10 @@ div {
 }
 
 #gameMenu {
-	background-color: #BAE4F2;
+	background-color: #6497B1;
 	margin: auto;
-	width: 50%;
-	height: 85px;
+	width: 70%;
+	height: 110px;
 	border-radius: 25px;
 	text-align: center;
 }
@@ -33,13 +37,28 @@ div {
 	border-style: solid;
 	border-width: 1px;
 	border-color: #000000;
+}
+
+.colorTrail {
+	margin-bottom: 3px;
+}
+
+.defaultColor {
 	background-color: #D3D3D3;
 }
 
 .red {
-	background-color: #FF0000;
+	background-color: #D55858;
 }
 
 .blue {
-	background-color: #1A36C3
+	background-color: #2FAA96
+}
+
+.yellow {
+	background-color: #FFC469
+}
+
+.green {
+	background-color: #426F42
 }
