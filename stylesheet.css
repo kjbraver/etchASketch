@@ -55,10 +55,26 @@ div {
 	background-color: #2FAA96
 }
 
+.purple {
+	background-color: #8470FF;
+}
+
+.pink {
+	background-color: #F6A1C8;
+}
+
+.orange {
+	background-color: #FF6D00;
+}
+
 .yellow {
-	background-color: #FFC469
+	background-color: #FFC469;
 }
 
 .green {
-	background-color: #426F42
+	background-color: #426F42;
+}
+
+.neonGreen {
+	background-color: #00FF00;
 }

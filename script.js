@@ -37,13 +37,19 @@ $(document).ready(function() {
 	});
 
 	//change cell color as mouse passes through
+	var randomColors = ["red", "blue", "yellow", "green", "purple", "pink", "orange", "neonGreen"];
 	$("#gameBoard").on("mouseenter", ".cell", function() {
-			$(this).addClass(currentColor);	
+			if(currentColor === "random") {
+				var randomColor = Math.floor(Math.random() * 8);
+				$(this).addClass(randomColors[randomColor]);
+			} else {
+				$(this).addClass(currentColor);
+			}	
 		});
 
 	//erase board when clear button is clicked
 	$('#menuContents').on('click', '#clear', function() {
-		$('.cell').removeClass(currentColor);
+		$('.cell').attr('class', 'cell defaultColor');
 	});
 });
 
