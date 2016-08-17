@@ -30,28 +30,43 @@ $(document).ready(function() {
 	//manage color change when one of the color trail buttons are clicked
 	$('#menuContents').on('click', '.colorTrail', function() {
 		//remove prior color trail
-		$('.cell').removeClass(currentColor);
+		eraseBoard();
 		//determine new color setting
 		currentColor = $(this).data("color");
 		//bind new color class to cells
 	});
 
 	//change cell color as mouse passes through
-	var randomColors = ["red", "blue", "yellow", "green", "purple", "pink", "orange", "neonGreen"];
 	$("#gameBoard").on("mouseenter", ".cell", function() {
-			if(currentColor === "random") {
-				var randomColor = Math.floor(Math.random() * 8);
-				$(this).addClass(randomColors[randomColor]);
-			} else {
-				$(this).addClass(currentColor);
-			}	
-		});
+		switch(currentColor) {
+			case "random":
+				var randomR = Math.floor(Math.random() * 256);
+				var randomG = Math.floor(Math.random() * 256);
+				var randomB = Math.floor(Math.random() * 256);
+				var randomColor = 'rgb(' + randomR + ', ' + randomG + ', ' + randomB + ')';
+				$(this).css("background-color", randomColor);
+				break;
+			case "gradient":
+				break;
+			case "red":
+				$(this).css('background-color', '#D55858');
+				break;
+			case "blue":
+				$(this).css('background-color', '#2FAA96');
+				break;
+
+		}	
+	});
 
 	//erase board when clear button is clicked
 	$('#menuContents').on('click', '#clear', function() {
-		$('.cell').attr('class', 'cell defaultColor');
+		eraseBoard();
 	});
 });
+
+function eraseBoard() {
+	$('.cell').css('background-color', '#D3D3D3');
+}
 
 //generates game board with boardSize x boardSize dimensions
 //boardSize: int
@@ -69,7 +84,7 @@ function generateBoard(boardSize) {
 		//generate 'boardSize' column divs in each row to fill out gameBoard
 		var $row = $('.row');
 		for(var j = 0; j < boardSize; j++) {
-			$row.append($('<div class="cell defaultColor"></div>'));
+			$row.append($('<div class="cell"></div>'));
 		}
 	}
 }
