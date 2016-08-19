@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 		//calculate new length and width of cells
 		var cellBorder = 2.0 * parseFloat($('.cell').css('border-width'));
-		var gameBoardLength = 600.0;
+		var gameBoardLength = 600;
 		var cellLength = gameBoardLength/boardSize;
 
 		generateBoard(boardSize);
@@ -33,7 +33,6 @@ $(document).ready(function() {
 		eraseBoard();
 		//determine new color setting
 		currentColor = $(this).data("color");
-		//bind new color class to cells
 	});
 
 	//change cell color as mouse passes through
@@ -47,6 +46,10 @@ $(document).ready(function() {
 				$(this).css("background-color", randomColor);
 				break;
 			case "gradient":
+				var opacity = parseFloat($(this).css('opacity'));
+				opacity -= 0.2;
+				$(this).css('background-color', '#2F4F4F');
+				$(this).css('opacity', opacity);
 				break;
 			case "red":
 				$(this).css('background-color', '#D55858');
@@ -54,7 +57,6 @@ $(document).ready(function() {
 			case "blue":
 				$(this).css('background-color', '#2FAA96');
 				break;
-
 		}	
 	});
 
@@ -65,7 +67,7 @@ $(document).ready(function() {
 });
 
 function eraseBoard() {
-	$('.cell').css('background-color', '#D3D3D3');
+	$('.cell').css({'background-color': '#2F4F4F', 'opacity': '1'});
 }
 
 //generates game board with boardSize x boardSize dimensions
@@ -87,4 +89,8 @@ function generateBoard(boardSize) {
 			$row.append($('<div class="cell"></div>'));
 		}
 	}
+}
+
+function darken() {
+
 }
